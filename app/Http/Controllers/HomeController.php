@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $user = Auth::user()->load('role');
+        $user = User::findOrFail(Auth::id());
+        if ($user['role']['id'] == 2 or $user['role']['name'] === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user['role']['id'] == 1 or $user['role']['name'] === 'peserta') {
+            return redirect()->route('pengguna.biodata.form');
+        }
     }
 }

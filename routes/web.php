@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BeasiswaFairController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -16,19 +17,25 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
-Route::prefix('/pengguna')->middleware('auth')->group(function () {
+// Rute untuk Admin
+Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'home'])->name('admin.dashboard');
+});
+
+// Rute untuk Peserta
+Route::prefix('/pengguna')->middleware(['auth', 'peserta'])->group(function () {
     Route::get('/password', [UserController::class, 'passwordForm'])->name('pengguna.password.form');
     Route::put('/password', [UserController::class, 'passwordUpdate'])->name('pengguna.password.update');
     Route::get('/biodata', [UserController::class, 'biodataForm'])->name('pengguna.biodata.form');
     Route::put('/biodata', [UserController::class, 'biodataUpdate'])->name('pengguna.biodata.update');
 });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/beasiswa-fair', [BeasiswaFairController::class, 'registerPage'])->name('beasiswa-fair.index');
 Route::post('/beasiswa-fair', [BeasiswaFairController::class, 'register'])->name('beasiswa-fair.post');
