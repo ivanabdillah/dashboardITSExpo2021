@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             RoleSeeder::class,
+            CompetitionSeeder::class,
+            DummyUserSeeder::class // comment di production
         ]);
     }
 }

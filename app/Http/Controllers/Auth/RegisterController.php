@@ -6,8 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+use App\Models\Competition;
+use App\Models\TeamProfile;
+use App\Models\TeamMember;
+use Throwable;
 
 class RegisterController extends Controller
 {
@@ -31,6 +37,12 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    public function showRegistrationForm()
+    {
+        $competitions = Competition::get();
+        return view('auth.register')->with('competitions', $competitions);
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -50,9 +62,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'college_name' => ['required', 'string', 'max:255'],
+            'team_name' => ['required', 'string', 'max:255'],
+            'competition_id' => ['required', 'string', 'max:255', 'exists:competitions,id'],
+            'leader_name' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:255'],
+            'line_id' => ['nullable', 'string', 'max:255'],
         ]);
     }
 
@@ -64,10 +81,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        DB::beginTransaction();
+        try {
+            $ketua = new TeamMember([
+                'name' => $data['leader_name'],
+                'phone' => $data['phone_number'],
+                'line_id' => $data['line_id']
+            ]);
+            $ketua->save();
+
+            $teams = new TeamProfile([
+                'team_name' => $data['team_name'],
+                'college_name' => $data['college_name'],
+                'ketua_id' => $ketua['id'],
+                'competition_id' => $data['competition_id']
+            ]);
+            $teams->save();
+            DB::commit();
+            return User::create([
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'role_id' => 1,
+                'userable_id' => $teams['id'],
+                'userable_type' => \App\Models\TeamProfile::class
+            ]);
+        } catch (Throwable $e) {
+            dd($e);
+            DB::rollBack();
+            return redirect()->back()->withErrors('Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 }

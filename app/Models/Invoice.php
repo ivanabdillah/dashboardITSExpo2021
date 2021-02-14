@@ -8,4 +8,36 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     use HasFactory;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'invoices';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'team_id',
+        'payment_timestamp',
+        'payment_proof',
+        'approver_id',
+        'approved_at'
+    ];
+
+    public function approver()
+    {
+        return $this->belongsTo(InternalProfile::class, 'approver_id', 'id');
+    }
 }

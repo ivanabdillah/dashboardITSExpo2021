@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class BeasiswaFair extends Model
 {
     use HasFactory;
-    protected $fillable=['name','email','instansi','phone','twibbon_path','instagram_path','story_path'];
+    protected $fillable = ['name', 'email', 'instansi', 'phone', 'twibbon_path', 'instagram_path', 'story_path'];
 }
