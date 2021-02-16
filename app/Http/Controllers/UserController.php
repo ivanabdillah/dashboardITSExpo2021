@@ -95,7 +95,7 @@ class UserController extends Controller
                 'phone' => $request->baru['anggota_pertama']['phone'],
                 'line' => $request->baru['anggota_pertama']['line'],
             ]);
-            
+
             $teamProfile->anggota1_id = TeamMember::orderBy('id', 'desc')->first();
             $teamProfile->save();
         }
@@ -117,7 +117,7 @@ class UserController extends Controller
                 'line' => $request->baru['anggota_kedua']['line'],
             ]);
 
-            $teamProfile->anggota1_id = TeamMember::orderBy('id', 'desc')->first();
+            $teamProfile->anggota2_id = TeamMember::orderBy('id', 'desc')->first();
             $teamProfile->save();
         }
 
