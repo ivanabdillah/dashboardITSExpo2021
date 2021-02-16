@@ -1,81 +1,17 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Beasiswa Fair - ITS Expo 2021</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('vendor/icofont/icofont.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+@extends('pre-event.main')
+@section('title','Beasiswa Fair')
+@section('css')
+    @parent
     <style>
-        body{
-            font-family: 'Rubik', sans-serif;
-        }
-        .wrap{
-            overflow-x:hidden;
-        }
         .bg-kiri{
             background: linear-gradient(159.96deg, #F53B4B -20.42%, #FFB953 93.03%);
             min-height:80vh;
         }
-        .requirement-list{
-            list-style: none;
-        }
-        .requirement-list li h4{
-            font-weight:300;
-            margin:0;
-            color: #3F0A3E;
-        }
-        .requirement-list li::before{
-            content: "\2022"; 
-            color: #F96C4F;
-            font-weight: 900; 
-            font-size:3em;
-            width: 1em; 
-            line-height:40px;
-        }
-        .step-trigger{
-            display: flex;
-            flex-direction: column;
-            padding:0;
-        }
-        .bs-stepper-header .line{
-            flex:1;
-            margin:0;
-            margin-top:-25px;
-            background-color:#F96C4F;
-        }
-        .bs-stepper-circle{
-            background: #F96C4F;
-        }
-        .active .bs-stepper-circle{
-            background: #F96C4F;
-        }
-        .bs-stepper-label{
-            font-family: 'Rubik', sans-serif;
-            font-weight:400;
-            color:#3F0A3E;
-            
-        }
     </style>
-  </head>
-  <body>
-      <div class="container-fluid p-0 wrap">
-          <nav class="navbar sticky-top navbar-expand-sm navbar-light" style="background-color:#0f0f0f00;position:absolute">
-              <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('/img/logo_putih.png')}}" width="100" class="m-3 img-fluid d-none d-lg-block" alt="Logo"><img src="{{asset('/img/logo.svg')}}" width="100" class="m-3 img-fluid d-block d-lg-none" alt="Logo"></a>
-          </nav>
-          <main>
-            <div class="row" style="min-height:80vh;">
-                <div class="col-lg-4 d-none d-lg-flex flex-column align-items-center justify-content-center text-white bg-kiri">
-                    <img src="{{asset('/img/beasiswa_fair.png')}}" style="width:30%" class="img-fluid" alt="Beasiswa Fair">
-                    <h1 class="mt-3 text-center" style="font-family: 'Raleway', sans-serif;font-weight:800">Beasiswa Fair</h1>
-                    <h3 class="mt-3 text-center" style="font-weight:300">ITS EXPO 2021</h3>
-                </div>
-                <div class="col-lg-8 p-3">
-                    @if(Session::has('status')&&Session::get('status')=='success')
+@endsection
+@section('image_kiri',asset('img/beasiswa_fair.png'))
+@section('section_kanan')
+@if(Session::has('status')&&Session::get('status')=='success')
                     <div class="d-flex flex-column align-items-center justify-content-center p-5" style="height:100%">
                         <h2 class="text-center pt-5" style="font-family: 'Raleway', sans-serif;font-weight:700;color: #3F0A3E;">Registrasi Berhasil</h2>
                         <h4 class="text-center mt-5" style="font-weight: 300;color: #3F0A3E;">Terima kasih telah mendaftar Beasiswa Fair ITS EXPO 2021
@@ -124,9 +60,9 @@
                               <div id="informasi-part" class="content" role="tabpanel" aria-labelledby="informasi-part-trigger">
                                 <h3 class="mt-5 text-center" style="font-family: 'Raleway', sans-serif;font-weight:600;color: #3F0A3E;">Syarat Pendaftaran</h3>
                                 <ul class="mt-5 mr-3 requirement-list">
-                                    <li class="d-flex align-items-lg-center"><h4>Peserta wajib mengikuti akun instagram @its_expo</h4></li>
-                                    <li class="d-flex align-items-lg-center"><h4>Peserta mengunggah twibbon di instagram</h4></li>
-                                    <li class="d-flex align-items-lg-center"><h4>Peserta mengunggah story instagram</h4></li>
+                                    <li class="pl-3"><h4>Peserta wajib mengikuti akun instagram @its_expo</h4></li>
+                                    <li class="pl-3"><h4>Peserta mengunggah twibbon di instagram</h4></li>
+                                    <li class="pl-3"><h4>Peserta mengunggah story instagram</h4></li>
                                 </ul>
                                 <div class="row px-5 px-lg-0 mt-5 pt-5">
                                     <button type="button" class="col-lg-3 mt-3 btn btn-primary badge-pill badge-primary p-3" style="background: #3F0A3E;font-weight:300;">Unduh Twibbon</button>
@@ -187,39 +123,4 @@
                         </div>
                     </div>
                     @endif
-                </div>
-            </div>
-          </main>
-          <footer>
-              <div class="container-fluid p-5" style="background: #3F0A3E; color:white;min-height:20vh">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <p style="font-weight: 300"><span style="font-weight: 500">Sekretariat ITS Expo</span><br/>Ruang 204 Gedung SCC lt 2, Kampus Sukolilo Institut Teknologi Sepuluh Nopember Surabaya 60111, Jawa Timur</p> 
-                    </div>
-                    <div class="col-lg-4 offset-lg-4 text-lg-right d-flex flex-column justify-content-center">
-                        <p style="font-weight: 300">Ikuti kami di sosial media</p> 
-                        <div><i class="icofont-line-messenger icofont-lg mr-3"></i><i class="icofont-instagram icofont-lg mr-3"></i> <i class="icofont-youtube-play icofont-lg mr-3"></i></div>
-                    </div>
-                </div>
-              </div>
-          </footer>
-      </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var stepper = new Stepper($('.bs-stepper')[0])
-        })
-        
-
-        function toStepper(number){
-            var stepper = new Stepper($('.bs-stepper')[0])
-            stepper.to(number)
-        }
-    </script>
-  </body>
-</html>
+@endsection

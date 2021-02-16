@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BCCController;
 use App\Http\Controllers\BeasiswaFairController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -37,5 +38,11 @@ Route::prefix('/pengguna')->middleware(['auth', 'peserta'])->group(function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Beasiswa Fair
 Route::get('/beasiswa-fair', [BeasiswaFairController::class, 'registerPage'])->name('beasiswa-fair.index');
 Route::post('/beasiswa-fair', [BeasiswaFairController::class, 'register'])->name('beasiswa-fair.post');
+
+//BCC
+Route::get('/business-case-competition', [BCCController::class, 'registerPage'])->name('bcc.index');
+Route::post('/business-case-competition', [BCCController::class, 'register'])->name('bcc.post');
