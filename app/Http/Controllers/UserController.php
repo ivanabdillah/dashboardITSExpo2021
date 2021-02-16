@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TeamMember;
+use App\Models\TeamProfile;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -60,6 +61,24 @@ class UserController extends Controller
     public function biodataUpdate(Request $request)
     {
 //        dd($request);
+
+        $fotoName = $request->ketua['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('ketua.foto')->getClientOriginalExtension();
+        $photoPath = 'images/bcc/foto/' . $fotoName;
+        Storage::put($photoPath, $request->file('ketua.foto'));
+
+        $ktmName = $request->ketua['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('ketua.ktm')->getClientOriginalExtension();
+        $ktmPath = 'images/bcc/ktm/' . $ktmName;
+        Storage::put($ktmPath, $request->file('ketua.ktm'));
+
+        $teamProfile = TeamProfile::find(Auth::user()->userable_id);
+        $ketua = TeamMember::find($teamProfile->ketua_id);
+        $ketua->name = $request->ketua['nama'];
+        $ketua->phone = $request->ketua['phone'];
+        $ketua->line = $request->ketua['line'];
+        $ketua->photo_path = $photoPath;
+        $ketua->ktm_path = $ktmPath;
+        $ketua->save();
+
         if ($request->has('baru.anggota_pertama')) {
             $fotoName = $request->baru['anggota_pertama']['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('baru.anggota_pertama.foto')->getClientOriginalExtension();
             $photoPath = 'images/bcc/foto/' . $fotoName;
@@ -76,6 +95,9 @@ class UserController extends Controller
                 'phone' => $request->baru['anggota_pertama']['phone'],
                 'line' => $request->baru['anggota_pertama']['line'],
             ]);
+
+            $teamProfile->anggota1_id = TeamMember::orderBy('id', 'desc')->first();
+            $teamProfile->save();
         }
 
         if ($request->has('baru.anggota_kedua')) {
@@ -94,6 +116,9 @@ class UserController extends Controller
                 'phone' => $request->baru['anggota_kedua']['phone'],
                 'line' => $request->baru['anggota_kedua']['line'],
             ]);
+
+            $teamProfile->anggota2_id = TeamMember::orderBy('id', 'desc')->first();
+            $teamProfile->save();
         }
 
         return redirect()->route('pengguna.biodata.form')->with('success', 'data has been updated');
