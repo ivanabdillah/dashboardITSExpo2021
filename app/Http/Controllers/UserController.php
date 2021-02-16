@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TeamMember;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Throwable;
 
 use App\Models\User;
@@ -56,6 +59,43 @@ class UserController extends Controller
 
     public function biodataUpdate(Request $request)
     {
-        dd($request);
+//        dd($request);
+        if ($request->has('baru.anggota_pertama')) {
+            $fotoName = $request->baru['anggota_pertama']['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('baru.anggota_pertama.foto')->getClientOriginalExtension();
+            $photoPath = 'images/bcc/foto/' . $fotoName;
+            Storage::put($photoPath, $request->file('baru.anggota_pertama.foto'));
+
+            $ktmName = $request->baru['anggota_pertama']['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('baru.anggota_pertama.ktm')->getClientOriginalExtension();
+            $ktmPath = 'images/bcc/ktm/' . $ktmName;
+            Storage::put($ktmPath, $request->file('baru.anggota_pertama.ktm'));
+
+            TeamMember::create([
+                'name' => $request->baru['anggota_pertama']['nama'],
+                'photo_path' => $photoPath,
+                'ktm_path' => $ktmPath,
+                'phone' => $request->baru['anggota_pertama']['phone'],
+                'line' => $request->baru['anggota_pertama']['line'],
+            ]);
+        }
+
+        if ($request->has('baru.anggota_kedua')) {
+            $fotoName = $request->baru['anggota_kedua']['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('baru.anggota_pertama.foto')->getClientOriginalExtension();
+            $photoPath = 'images/bcc/foto/' . $fotoName;
+            Storage::put($photoPath, $request->file('baru.anggota_kedua.foto'));
+
+            $ktmName = $request->baru['anggota_kedua']['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('baru.anggota_pertama.ktm')->getClientOriginalExtension();
+            $ktmPath = 'images/bcc/ktm/' . $ktmName;
+            Storage::put($ktmPath, $request->file('baru.anggota_kedua.ktm'));
+
+            TeamMember::create([
+                'name' => $request->baru['anggota_kedua']['nama'],
+                'photo_path' => $photoPath,
+                'ktm_path' => $ktmPath,
+                'phone' => $request->baru['anggota_kedua']['phone'],
+                'line' => $request->baru['anggota_kedua']['line'],
+            ]);
+        }
+
+        return redirect()->route('pengguna.biodata.form')->with('success', 'data has been updated');
     }
 }
