@@ -9,7 +9,7 @@ use App\Models\TeamProfile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Auth\Events\Registered;
 class BCCController extends Controller
 {
     function registerPage(){
@@ -36,14 +36,14 @@ class BCCController extends Controller
         $ketua_data = TeamMember::create(['name'=>$request->nama_ketua,'phone'=>$request->nomor_hp]);
         $team_profile_data = TeamProfile::create(['team_name'=>$request->nama_tim,'college_name'=>$request->perguruan_tinggi,'ketua_id'=>$ketua_data->id,'competition_id'=>$bcc_id]);
 
-        User::create([
+        $user = User::create([
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
             'role_id'=>$role_id,
             'userable_id'=>$team_profile_data->id,
             'userable_type'=>'App\Models\TeamProfile'
         ]);
-
+        event(new Registered($user));
         return redirect(route('bcc.index'))->with(['status'=>'success']);
     }
     // unggaah submisi
