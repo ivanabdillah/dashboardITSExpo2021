@@ -72,7 +72,7 @@ class UserController extends Controller
 
         $teamProfile = TeamProfile::find(Auth::user()->userable_id);
         $ketua = TeamMember::find($teamProfile->ketua_id);
-        $ketua->name = $request->ketua['name'];
+        $ketua->name = $request->ketua['nama'];
         $ketua->phone = $request->ketua['phone'];
         $ketua->line = $request->ketua['line'];
         $ketua->photo_path = $photoPath;
