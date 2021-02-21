@@ -17,8 +17,8 @@ class CreateCompetitionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('price');  //normal price
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
             $table->timestamps();
         });
     }

@@ -15,9 +15,9 @@ class CompetitionSeeder extends Seeder
     public function run()
     {
         DB::table('competitions')->insert([
-            ['name' => 'bcc'],
-            ['name' => 'bpc'],
-            ['name' => 'paper'],
+            ['name' => 'bcc', 'price' => 175000],
+            ['name' => 'bpc', 'price' => 250000],
+            ['name' => 'paper', 'price' => 200000],
         ]);
     }
 }
