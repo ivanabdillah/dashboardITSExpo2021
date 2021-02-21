@@ -46,4 +46,9 @@ class Invoice extends Model
     {
         return $this->belongsTo(Promo::class);
     }
+
+    public function team()
+    {
+        return $this->belongsTo(TeamProfile::class, 'team_id', 'id');
+    }
 }

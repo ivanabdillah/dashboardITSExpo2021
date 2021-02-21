@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BCCController;
 use App\Http\Controllers\BeasiswaFairController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PembayaranController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,7 @@ Auth::routes();
 
 //Route yang butuh autentikasi
 Route::middleware(['auth'])->group(function () {
-    
+
     //Untuk verifikasi email
     Route::prefix('/email')->group(function () {
         Route::get('/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
@@ -62,6 +63,9 @@ Route::middleware(['auth'])->group(function () {
         // Rute untuk Admin
         Route::prefix('/admin')->middleware(['admin'])->group(function () {
             Route::get('/dashboard', [AdminController::class, 'home'])->name('admin.dashboard');
+            Route::get('/pembayaran', [PembayaranController::class, 'halamanVerifikasi'])->name('admin.pembayaran');
+            Route::get('/bukti-bayar/{id}', [PembayaranController::class, 'berkasBukti'])->name('admin.pembayaran.berkas-bukti');
+            Route::get('/pembayaran/verifikasi/{id}', [PembayaranController::class, 'verifPembayaran'])->name('admin.pembayaran.verif');
         });
 
         // Rute untuk Peserta
@@ -70,6 +74,13 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/password', [UserController::class, 'passwordUpdate'])->name('pengguna.password.update');
             Route::get('/biodata', [UserController::class, 'biodataForm'])->name('pengguna.biodata.form');
             Route::put('/biodata', [UserController::class, 'biodataUpdate'])->name('pengguna.biodata.update');
+
+            Route::prefix('/pembayaran')->group(function () {
+                Route::get('/', [PembayaranController::class, 'halamanPembayaran'])->name('pengguna.pembayaran');
+                Route::get('/bukti-bayar/{id}', [PembayaranController::class, 'berkasBukti'])->name('pengguna.pembayaran.berkas-bukti');
+                Route::post('/butki-bayar', [PembayaranController::class, 'unggahBukti'])->name('pengguna.pembayaran.unggah-bukti');
+                Route::post('/cek-promo', [PembayaranController::class, 'cekPromo'])->name('pengguna.pembayaran.cek-promo');
+            });
         });
     });
 });

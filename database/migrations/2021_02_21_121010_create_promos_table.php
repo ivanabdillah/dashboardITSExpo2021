@@ -17,6 +17,8 @@ class CreatePromosTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('discount');
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
             $table->timestamps();
         });
 

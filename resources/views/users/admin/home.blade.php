@@ -11,7 +11,7 @@
 <div class="card mb-0">
   <div class="card-header">Rumah Admin</div>
   <div class="card-body">
-    Halo Admin
+    Halo {{$user['userable']['name']}}
   </div>
 </div>
 

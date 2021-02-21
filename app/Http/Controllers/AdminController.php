@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
-        return view('users.admin.home');
+        return view('users.admin.home')->with('user', $request->user()->load('userable'));
     }
 }

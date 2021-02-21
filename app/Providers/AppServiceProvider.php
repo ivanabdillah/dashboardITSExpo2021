@@ -37,6 +37,12 @@ class AppServiceProvider extends ServiceProvider
                         'icon' => 'fa fa-fw fa-users',
                         'active' => ['/pengguna/biodata']
                     ],
+                    [
+                        'text'  => 'Pembayaran',
+                        'url' => '/pengguna/pembayaran',
+                        'icon' => 'fa fa-fw fa-money-check-alt',
+                        'active' => ['/pengguna/pembayaran']
+                    ],
                     ['header' => 'account_settings'],
                     [
                         'text'        => 'Ubah Password',
@@ -53,6 +59,12 @@ class AppServiceProvider extends ServiceProvider
                         'url' => '/admin/dashboard',
                         'icon' => 'fa fa-fw fa-home',
                         'active' => ['/admin/dashboard']
+                    ],
+                    [
+                        'text'  => 'Pembayaran',
+                        'url' => '/admin/pembayaran',
+                        'icon' => 'fa fa-fw fa-funnel-dollar',
+                        'active' => ['/admin/pembayaran']
                     ],
                     ['header' => 'account_settings']
                 ];
