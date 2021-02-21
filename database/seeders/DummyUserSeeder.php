@@ -32,6 +32,8 @@ class DummyUserSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'Ketua amanah',
+                'majors' => 'Sistem Informasi',
+                'year' => 2018,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

@@ -43,4 +43,9 @@ class InternalProfile extends Model
     {
         return $this->hasMany(Invoice::class, 'approver_id', 'id');
     }
+
+    public function approveConference()
+    {
+        return $this->hasMany(Conference::class, 'approver_id', 'id');
+    }
 }

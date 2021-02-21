@@ -16,6 +16,8 @@ class CreateTeamMembersTable extends Migration
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('majors');
+            $table->unsignedInteger('year');
             $table->string('photo_path')->nullable(); //file path for photo
             $table->string('ktm_path')->nullable(); //file path for ktm image
             $table->string('phone')->nullable();
