@@ -18,6 +18,7 @@ class CreateInvoicesTable extends Migration
             $table->foreignId('team_id')->constrained('team_profiles');
             $table->timestamp('payment_timestamp')->nullable(); //date when payment is done
             $table->string('payment_proof')->nullable();
+            $table->foreignId('promo_id')->nullable()->constrained('promos');
             $table->foreignId('approver_id')->nullable()->constrained('internal_profiles');
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();

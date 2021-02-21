@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Invoice extends Model
+class Promo extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Invoice extends Model
      *
      * @var string
      */
-    protected $table = 'invoices';
+    protected $table = 'promos';
 
     /**
      * The primary key associated with the table.
@@ -26,24 +26,15 @@ class Invoice extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var string[]
      */
     protected $fillable = [
-        'team_id',
-        'payment_timestamp',
-        'payment_proof',
-        'promo_id',
-        'approver_id',
-        'approved_at'
+        'name',
+        'discount',
     ];
 
-    public function approver()
+    public function invoice()
     {
-        return $this->belongsTo(InternalProfile::class, 'approver_id', 'id');
-    }
-
-    public function promo()
-    {
-        return $this->belongsTo(Promo::class);
+        return $this->hasMany(Invoice::class);
     }
 }
