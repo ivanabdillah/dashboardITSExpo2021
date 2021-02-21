@@ -18,6 +18,8 @@ class TeamMember extends Model
     protected $fillable = [
         'name',
         'photo_path',
+        'majors',
+        'year',
         'ktm_path',
         'phone',
         'line',

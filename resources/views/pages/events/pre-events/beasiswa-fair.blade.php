@@ -1,4 +1,4 @@
-@extends('pre-event.main')
+@extends('pages.events.main')
 @section('title','Beasiswa Fair')
 @section('css')
     @parent
@@ -65,7 +65,7 @@
                                     <li class="pl-3"><h4>Peserta mengunggah story instagram</h4></li>
                                 </ul>
                                 <div class="row px-5 px-lg-0 mt-5 pt-5">
-                                    <button type="button" class="col-lg-3 mt-3 btn btn-primary badge-pill badge-primary p-3" style="background: #3F0A3E;font-weight:300;">Unduh Twibbon</button>
+                                    <a href="{{asset('img/twibbon_beasiswa_fair.png')}}" target="_blank" type="button" class="col-lg-3 mt-3 btn btn-primary badge-pill badge-primary p-3" style="background: #3F0A3E;font-weight:300;">Unduh Twibbon</a>
                                     <button type="button" class="col-lg-3 mt-3 offset-lg-6 btn btn-primary badge-pill badge-primary p-3" style="background: #3F0A3E;font-weight:300;" onclick="toStepper(2)">Selanjutnya</button>
                                 </div>
                               </div>
