@@ -19,6 +19,10 @@ class CreatePromosTable extends Migration
             $table->unsignedBigInteger('discount');
             $table->timestamps();
         });
+
+        Schema::table('invoices', function (Blueprint $table) {
+            $table->foreignId('promo_id')->nullable()->constrained('promos');
+        });
     }
 
     /**
