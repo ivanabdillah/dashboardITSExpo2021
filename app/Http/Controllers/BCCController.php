@@ -13,7 +13,7 @@ use Illuminate\Auth\Events\Registered;
 class BCCController extends Controller
 {
     function registerPage(){
-        return view('pre-event.business-case-competition');
+        return view('pages.events.pre-events.business-case-competition');
     }
 
     function register(Request $request){

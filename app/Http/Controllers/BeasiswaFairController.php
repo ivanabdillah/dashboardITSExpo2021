@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class BeasiswaFairController extends Controller
 {
     function registerPage(){
-        return view('pre-event.beasiswa-fair');
+        return view('pages.events.pre-events.beasiswa-fair');
     }
 
     function register(Request $request){

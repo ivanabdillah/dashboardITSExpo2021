@@ -1,20 +1,20 @@
-@extends('pre-event.main')
-@section('title','Beasiswa Fair')
+@extends('pages.events.main')
+@section('title','Conference')
 @section('css')
     @parent
     <style>
         .bg-kiri{
-            background: linear-gradient(159.96deg, #F53B4B -20.42%, #FFB953 93.03%);
+            background: linear-gradient(190.1deg, #572A56 15.38%, #F54453 133.79%);
             min-height:80vh;
         }
     </style>
 @endsection
-@section('image_kiri',asset('img/beasiswa_fair.png'))
+@section('image_kiri',asset('img/conference.png'))
 @section('section_kanan')
 @if(Session::has('status')&&Session::get('status')=='success')
                     <div class="d-flex flex-column align-items-center justify-content-center p-5" style="height:100%">
                         <h2 class="text-center pt-5" style="font-family: 'Raleway', sans-serif;font-weight:700;color: #3F0A3E;">Registrasi Berhasil</h2>
-                        <h4 class="text-center mt-5" style="font-weight: 300;color: #3F0A3E;">Terima kasih telah mendaftar Beasiswa Fair ITS EXPO 2021
+                        <h4 class="text-center mt-5" style="font-weight: 300;color: #3F0A3E;">Terima kasih telah mendaftar Conference ITS EXPO 2021
                             Silahkan gabung grup WhatsApp di bawah ini
                             untuk mempermudah komunikasi.</h4>
                             <button type="button" class="btn btn-success badge-success badge-pill p-3 px-lg-5 border-0 d-flex flex-row align-items-center mt-5" style="background: #4DCC5B;"><i class="icofont-brand-whatsapp icofont-lg"></i>&nbsp;&nbsp;&nbsp;<h4 class="m-0" style="font-weight:300;">Grup WhatsApp</h4></button>
@@ -55,7 +55,7 @@
                               </div>
                             </div>
                             <div class="bs-stepper-content">
-                            <form action="{{route('beasiswa-fair.post')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('conference.post')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                               <div id="informasi-part" class="content" role="tabpanel" aria-labelledby="informasi-part-trigger">
                                 <h3 class="mt-5 text-center" style="font-family: 'Raleway', sans-serif;font-weight:600;color: #3F0A3E;">Syarat Pendaftaran</h3>
