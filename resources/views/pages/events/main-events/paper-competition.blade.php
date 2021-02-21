@@ -16,7 +16,7 @@
                         <h2 class="mt-5 pt-5 pt-lg-0 text-center" style="font-family: 'Raleway', sans-serif;font-weight:700;color: #3F0A3E;">Syarat Pendaftaran</h2>
                         @if ($errors->any())
                         <div class="alert alert-danger" role="alert">
-                            <ul>
+                            <ul style="list-style: none">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
@@ -101,7 +101,7 @@
                                                 <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="jurusan" placeholder="Jurusan / Departemen / Program Studi" required>
                                             </div>
                                             <div class="form-group mt-5">
-                                                <input type="number" class="form-control border-left-0 border-top-0 border-right-0" name="tahun_angkatan" placeholder="Tahun Angkatan" required>
+                                                <input type="number" class="form-control border-left-0 border-top-0 border-right-0" min="0" max="{{ date('Y')}}" name="tahun_angkatan" placeholder="Tahun Angkatan" required>
                                             </div>
                                             <div class="form-group mt-5">
                                                 <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nomor_hp" placeholder="Nomor HP" required>

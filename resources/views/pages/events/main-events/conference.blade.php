@@ -112,6 +112,13 @@
                                                 <input type="file" name="file_story" id="file_story" class="d-none" accept="image/*" required/>
                                             </div>
                                         </div>
+                                        <div class="row my-5">
+                                            <label for="file_bukti_pembayaran" class="col-lg-6" style="font-weight:400;color:#000000;opacity:0.5">Bukti pembayaran</label>
+                                            <div class="col-lg-6">
+                                                <button type="button" class="float-lg-right btn btn-primary badge-pill badge-primary p-2 px-lg-5" style="background: #3F0A3E;font-weight:400;" onclick="$('#file_bukti_pembayaran').click()">Tambahkan File</button>
+                                                <input type="file" name="file_bukti_pembayaran" id="file_bukti_pembayaran" class="d-none" accept="image/*" required/>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row px-5 px-lg-0 mt-5 pt-5">
                                         <button type="button" class="col-lg-3 mt-3 btn btn-primary badge-pill badge-primary p-3" style="background: #3F0A3E;font-weight:300;" onclick="toStepper(2)">Sebelumnya</button>

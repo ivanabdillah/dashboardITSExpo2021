@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\ConferenceRegister;
 use Illuminate\Http\Request;
 
 class ConferenceController extends Controller
@@ -10,7 +11,10 @@ class ConferenceController extends Controller
         return view('pages.events.main-events.conference');
     }
 
-    public function register(Request $request){
-
+    function register(Request $request){
+        $register_data = ConferenceRegister::execute($request,'conference');
+        if($register_data['success']){
+            return redirect(route('conference.index'))->with(['status'=>'success']);
+        }
     }
 }

@@ -16,7 +16,7 @@
                         <h2 class="mt-5 pt-5 pt-lg-0 text-center" style="font-family: 'Raleway', sans-serif;font-weight:700;color: #3F0A3E;">Syarat Pendaftaran</h2>
                         @if ($errors->any())
                         <div class="alert alert-danger" role="alert">
-                            <ul>
+                            <ul style="list-style: none">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
@@ -103,10 +103,17 @@
                                                 <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="jurusan" placeholder="Jurusan / Departemen / Program Studi" required>
                                             </div>
                                             <div class="form-group mt-5">
-                                                <input type="number" class="form-control border-left-0 border-top-0 border-right-0" name="tahun_angkatan" placeholder="Tahun Angkatan" required>
+                                                <input type="number" class="form-control border-left-0 border-top-0 border-right-0" min="0" max="{{ date('Y')}}" name="tahun_angkatan" placeholder="Tahun Angkatan" required>
                                             </div>
                                             <div class="form-group mt-5">
                                                 <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nomor_hp" placeholder="Nomor HP" required>
+                                            </div>
+                                            <div class="row mt-5">
+                                                <label for="file_twibbon" class="col-lg-6" style="font-weight:400;color:#000000;opacity:0.5">Bukti unggah Twibbon</label>
+                                                <div class="col-lg-6">
+                                                    <button type="button" class="float-lg-right btn btn-primary badge-pill badge-primary p-2 px-lg-5" style="background: #3F0A3E;font-weight:400;" onclick="$('#file_twibbon').click()">Tambahkan File</button>
+                                                    <input type="file" name="file_twibbon" id="file_twibbon" class="d-none" accept="image/*" required/>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row px-5 px-lg-0 mt-5 pt-5">
