@@ -22,7 +22,7 @@ class CompetitionRegister{
             'password'=>'required|string|confirmed|min:8|max:12',
             'perguruan_tinggi'=>'required|string',
             'jurusan'=>'required|string',
-            'tahun_angkatan'=>'required|number|min:0|max:'.date('Y'),
+            'tahun_angkatan'=>'required|numeric|min:0|max:'.date('Y'),
             'nomor_hp'=>['required','string','regex:/^(^08)\d{8,11}$/']
         ]);
         if($competition=='bpc'){
@@ -41,7 +41,9 @@ class CompetitionRegister{
         $ketua_data = TeamMember::create(
             [
                 'name'=>$request->nama_ketua,
-                'phone'=>$request->nomor_hp
+                'phone'=>$request->nomor_hp,
+                'majors'=>$request->jurusan,
+                'year'=>$request->tahun_angkatan
             ]
         );
         $team_profile_data = TeamProfile::create(
@@ -49,9 +51,7 @@ class CompetitionRegister{
                 'team_name'=>$request->nama_tim,
                 'college_name'=>$request->perguruan_tinggi,
                 'ketua_id'=>$ketua_data->id,
-                'competition_id'=>$bcc_id,
-                'majors'=>$request->jurusan,
-                'year'=>$request->tahun_angkatan
+                'competition_id'=>$bcc_id
             ]
         );
         if($competition=='bpc'){

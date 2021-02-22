@@ -74,13 +74,13 @@
                                 <div id="account-creation-part" class="content" role="tabpanel" aria-labelledby="account-creation-part-trigger">
                                     <div class="px-2 px-lg-5 mx-2 mx-lg-5">
                                         <div class="form-group mt-5">
-                                            <input type="email" class="form-control border-left-0 border-top-0 border-right-0" name="email" placeholder="Email" required>
+                                            <input type="email" class="form-control border-left-0 border-top-0 border-right-0" name="email" placeholder="Email" >
                                         </div>
                                         <div class="form-group mt-5">
-                                            <input type="password" class="form-control border-left-0 border-top-0 border-right-0" name="password" placeholder="Password" required>
+                                            <input type="password" class="form-control border-left-0 border-top-0 border-right-0" name="password" placeholder="Password" >
                                         </div>
                                         <div class="form-group mt-5">
-                                            <input type="password" class="form-control border-left-0 border-top-0 border-right-0" name="password_confirmation" placeholder="Konfirmasi Password" required>
+                                            <input type="password" class="form-control border-left-0 border-top-0 border-right-0" name="password_confirmation" placeholder="Konfirmasi Password" >
                                         </div>
                                     </div>
                                     <div class="row px-5 px-lg-0 mt-5 pt-5">
@@ -91,28 +91,28 @@
                                 <div id="personal-info-part" class="content pt-5" role="tabpanel" aria-labelledby="personal-info-part-trigger">
                                         <div class="px-2 px-lg-5 mx-2 mx-lg-5">
                                             <div class="form-group">
-                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nama_tim" placeholder="Nama Tim" required>
+                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nama_tim" placeholder="Nama Tim" >
                                             </div>
                                             <div class="form-group mt-5">
-                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nama_ketua" placeholder="Nama Ketua" required>
+                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nama_ketua" placeholder="Nama Ketua" >
                                             </div>
                                             <div class="form-group mt-5">
-                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="perguruan_tinggi" placeholder="Asal Perguruan Tinggi" required>
+                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="perguruan_tinggi" placeholder="Asal Perguruan Tinggi" >
                                             </div>
                                             <div class="form-group mt-5">
-                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="jurusan" placeholder="Jurusan / Departemen / Program Studi" required>
+                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="jurusan" placeholder="Jurusan / Departemen / Program Studi" >
                                             </div>
                                             <div class="form-group mt-5">
-                                                <input type="number" class="form-control border-left-0 border-top-0 border-right-0" min="0" max="{{ date('Y')}}" name="tahun_angkatan" placeholder="Tahun Angkatan" required>
+                                                <input type="number" class="form-control border-left-0 border-top-0 border-right-0" min="0" max="{{ date('Y')}}" name="tahun_angkatan" placeholder="Tahun Angkatan" >
                                             </div>
                                             <div class="form-group mt-5">
-                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nomor_hp" placeholder="Nomor HP" required>
+                                                <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nomor_hp" placeholder="Nomor HP" >
                                             </div>
                                             <div class="row mt-5">
                                                 <label for="file_twibbon" class="col-lg-6" style="font-weight:400;color:#000000;opacity:0.5">Bukti unggah Twibbon</label>
                                                 <div class="col-lg-6">
                                                     <button type="button" class="float-lg-right btn btn-primary badge-pill badge-primary p-2 px-lg-5" style="background: #3F0A3E;font-weight:400;" onclick="$('#file_twibbon').click()">Tambahkan File</button>
-                                                    <input type="file" name="file_twibbon" id="file_twibbon" class="d-none" accept="image/*" required/>
+                                                    <input type="file" name="file_twibbon" id="file_twibbon" class="d-none" accept="image/*" />
                                                 </div>
                                             </div>
                                         </div>

@@ -72,16 +72,16 @@
                               <div id="personal-info-part" class="content pt-5" role="tabpanel" aria-labelledby="personal-info-part-trigger">
                                     <div class="px-2 px-lg-5 mx-2 mx-lg-5">
                                         <div class="form-group">
-                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nama" placeholder="Nama" required>
+                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nama" placeholder="Nama" >
                                         </div>
                                         <div class="form-group mt-5">
-                                            <input type="email" class="form-control border-left-0 border-top-0 border-right-0" name="email" placeholder="Email" required>
+                                            <input type="email" class="form-control border-left-0 border-top-0 border-right-0" name="email" placeholder="Email" >
                                         </div>
                                         <div class="form-group mt-5">
-                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="instansi" placeholder="Instansi" required>
+                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="instansi" placeholder="Instansi" >
                                         </div>
                                         <div class="form-group mt-5">
-                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="no_wa" placeholder="Nomor WhatsApp" required>
+                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="no_wa" placeholder="Nomor WhatsApp" >
                                         </div>
                                     </div>
                                     <div class="row px-5 px-lg-0 mt-5 pt-5">
@@ -95,28 +95,28 @@
                                             <label for="file_follow" class="col-lg-6" style="font-weight:400;color:#000000;opacity:0.5">Bukti follow instagram @its_expo</label>
                                             <div class="col-lg-6">
                                                 <button type="button" class="float-lg-right btn btn-primary badge-pill badge-primary p-2 px-lg-5" style="background: #3F0A3E;font-weight:400;" onclick="$('#file_follow').click()">Tambahkan File</button>
-                                                <input type="file" name="file_follow" id="file_follow" class="d-none" accept="image/*" required/>
+                                                <input type="file" name="file_follow" id="file_follow" class="d-none" accept="image/*" />
                                             </div>
                                         </div>
                                         <div class="row my-5">
                                             <label for="file_twibbon" class="col-lg-6" style="font-weight:400;color:#000000;opacity:0.5">Bukti unggah Twibbon</label>
                                             <div class="col-lg-6">
                                                 <button type="button" class="float-lg-right btn btn-primary badge-pill badge-primary p-2 px-lg-5" style="background: #3F0A3E;font-weight:400;" onclick="$('#file_twibbon').click()">Tambahkan File</button>
-                                                <input type="file" name="file_twibbon" id="file_twibbon" class="d-none" accept="image/*" required/>
+                                                <input type="file" name="file_twibbon" id="file_twibbon" class="d-none" accept="image/*" />
                                             </div>
                                         </div>
                                         <div class="row my-5">
                                             <label for="file_story" class="col-lg-6" style="font-weight:400;color:#000000;opacity:0.5">Bukti story instagram</label>
                                             <div class="col-lg-6">
                                                 <button type="button" class="float-lg-right btn btn-primary badge-pill badge-primary p-2 px-lg-5" style="background: #3F0A3E;font-weight:400;" onclick="$('#file_story').click()">Tambahkan File</button>
-                                                <input type="file" name="file_story" id="file_story" class="d-none" accept="image/*" required/>
+                                                <input type="file" name="file_story" id="file_story" class="d-none" accept="image/*" />
                                             </div>
                                         </div>
                                         <div class="row my-5">
                                             <label for="file_bukti_pembayaran" class="col-lg-6" style="font-weight:400;color:#000000;opacity:0.5">Bukti pembayaran</label>
                                             <div class="col-lg-6">
                                                 <button type="button" class="float-lg-right btn btn-primary badge-pill badge-primary p-2 px-lg-5" style="background: #3F0A3E;font-weight:400;" onclick="$('#file_bukti_pembayaran').click()">Tambahkan File</button>
-                                                <input type="file" name="file_bukti_pembayaran" id="file_bukti_pembayaran" class="d-none" accept="image/*" required/>
+                                                <input type="file" name="file_bukti_pembayaran" id="file_bukti_pembayaran" class="d-none" accept="image/*" />
                                             </div>
                                         </div>
                                     </div>

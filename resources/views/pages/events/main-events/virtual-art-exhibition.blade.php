@@ -71,19 +71,19 @@
                                 <div id="account-creation-part" class="content" role="tabpanel" aria-labelledby="account-creation-part-trigger">
                                     <div class="px-2 px-lg-5 mx-2 mx-lg-5">
                                         <div class="form-group">
-                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nama_ketua" placeholder="Nama Ketua" required>
+                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nama_ketua" placeholder="Nama Ketua" >
                                         </div>
                                         <div class="form-group mt-5">
-                                            <input type="email" class="form-control border-left-0 border-top-0 border-right-0" name="email" placeholder="Email" required>
+                                            <input type="email" class="form-control border-left-0 border-top-0 border-right-0" name="email" placeholder="Email" >
                                         </div>
                                         <div class="form-group mt-5">
-                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="instagram" placeholder="Instagram" required>
+                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="instagram" placeholder="Instagram" >
                                         </div>
                                         <div class="form-group mt-5">
-                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nomor_whatsapp" placeholder="Nomor WhatsApp Ketua" required>
+                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="nomor_whatsapp" placeholder="Nomor WhatsApp Ketua" >
                                         </div>
                                         <div class="form-group mt-5">
-                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="alamat" placeholder="Alamat" required>
+                                            <input type="text" class="form-control border-left-0 border-top-0 border-right-0" name="alamat" placeholder="Alamat" >
                                         </div>
                                     </div>
                                     <div class="row px-5 px-lg-0 mt-5 pt-5">
