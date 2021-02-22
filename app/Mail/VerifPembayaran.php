@@ -28,6 +28,6 @@ class VerifPembayaran extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.notif-pembayaran')->with('namaTim', $this->team->team_name);
+        return $this->view('mail.notif-pembayaran')->subject('Verifikasi Pembayaran')->with('namaTim', $this->team->team_name);
     }
 }
