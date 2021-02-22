@@ -69,7 +69,7 @@
                                 </div>
                                 </div>
                                 <div class="bs-stepper-content">
-                                <form action="{{route('bpc.post')}}" method="POST">
+                                <form action="{{route('bpc.post')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                 <div id="account-creation-part" class="content" role="tabpanel" aria-labelledby="account-creation-part-trigger">
                                     <div class="px-2 px-lg-5 mx-2 mx-lg-5">
