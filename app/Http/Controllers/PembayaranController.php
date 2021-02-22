@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use App\Models\Promo;
+use App\Mail\VerifPembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
+use Throwable;
 
 class PembayaranController extends Controller
 {
@@ -77,10 +80,15 @@ class PembayaranController extends Controller
 
     public function verifPembayaran(Request $request, $id)
     {
-        $invoice = Invoice::where('id', $id)->firstOrFail();
+        $invoice = Invoice::where('id', $id)->with('team.user')->firstOrFail();
         $invoice->approver_id = $request->user()->userable_id;
         $invoice->approved_at = Carbon::now();
         $invoice->save();
+
+        try {
+            Mail::to($invoice->team->user->email)->send(new VerifPembayaran($invoice->team));
+        } catch (Throwable $e) {
+        }
 
         return redirect()->route('admin.pembayaran')->with('success', 'Berhasil di verifikasi');
     }
