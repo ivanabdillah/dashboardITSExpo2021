@@ -54,7 +54,7 @@ Route::post('/paper-competition', [PaperCompetitionController::class, 'register'
 //Virtual Art Exhibition
 Route::get('/virtual-art-exhibition', [VirtualArtExhibitionController::class, 'registerPage'])->name('vae.index');
 Route::post('/virtual-art-exhibition', [VirtualArtExhibitionController::class, 'register'])->name('vae.post');
-Auth::routes();
+Auth::routes(['register' => false]);
 
 //Route yang butuh autentikasi
 Route::middleware(['auth'])->group(function () {
