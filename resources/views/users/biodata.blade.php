@@ -44,6 +44,16 @@
             value="{{$biodata['userable']['ketua']['name']}}" required>
         </div>
         <div class="mb-3">
+          <label class="form-label" for="jurusanKetua">Jurusan / Departemen / Program Studi</label>
+          <input type="text" class="form-control" id="jurusanKetua" name="ketua[jurusan]"
+                 value="{{$biodata['userable']['ketua']['majors']}}" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="angkatanKetua">Tahun Angkatan</label>
+          <input type="text" class="form-control" id="angkatanKetua" name="ketua[angkatan]"
+                 value="{{$biodata['userable']['ketua']['year']}}" required>
+        </div>
+        <div class="mb-3">
           <label class="form-label" for="nomorKetua">Nomor Telepon</label>
           <input type="text" class="form-control" id="nomorKetua" name="ketua[phone]"
             value="{{$biodata['userable']['ketua']['phone']}}">
@@ -79,6 +89,16 @@
           <label class="form-label" for="namaAnggotaPertama">Nama</label>
           <input type="text" class="form-control" id="namaAnggotaPertama" name="anggota_pertama[nama]"
             value="{{$biodata['userable']['anggotaPertama']['name']}}" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="jurusanAnggotaPertama">Jurusan / Departemen / Program Studi</label>
+          <input type="text" class="form-control" id="jurusanAnggotaPertama" name="anggota_pertama[jurusan]"
+                 value="{{$biodata['userable']['anggotaPertama']['majors']}}" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="angkatanAnggotaPertama">Tahun Angkatan</label>
+          <input type="text" class="form-control" id="angkatanAnggotaPertama" name="anggota_pertama[angkatan]"
+                 value="{{$biodata['userable']['anggotaPertama']['year']}}" required>
         </div>
         <div class="mb-3">
           <label class="form-label" for="nomorAnggotaPertama">Nomor Telepon</label>
@@ -126,6 +146,16 @@
           <label class="form-label" for="namaAnggotaKedua">Nama</label>
           <input type="text" class="form-control" id="namaAnggotaKedua" name="anggota_kedua[nama]"
             value="{{$biodata['userable']['anggotaKedua']['name']}}" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="jurusanAnggotaKedua">Jurusan / Departemen / Program Studi</label>
+          <input type="text" class="form-control" id="jurusanAnggotaKedua" name="anggota_kedua[jurusan]"
+                 value="{{$biodata['userable']['anggotaKedua']['majors']}}" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="angkatanAnggotaKedua">Tahun Angkatan</label>
+          <input type="text" class="form-control" id="angkatanAnggotaKedua" name="anggota_kedua[angkatan]"
+                 value="{{$biodata['userable']['anggotaKedua']['year']}}" required>
         </div>
         <div class="mb-3">
           <label class="form-label" for="nomorAnggotaKedua">Nomor Telepon</label>
@@ -196,6 +226,16 @@
              required>
         </div>
         <div class="mb-3">
+          <label class="form-label" for="jurusanAnggotaPertama">Jurusan / Departemen / Program Studi</label>
+          <input type="text" class="form-control" id="jurusanAnggotaPertama" name="baru[anggota_pertama][jurusan]"
+             required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="angkatanAnggotaPertama">Tahun Angkatan</label>
+          <input type="text" class="form-control" id="angkatanAnggotaPertama" name="baru[anggota_pertama][angkatan]"
+             required>
+        </div>
+        <div class="mb-3">
           <label class="form-label" for="nomorAnggotaPertama">Nomor Telepon</label>
           <input type="text" class="form-control" id="nomorAnggotaPertama" name="baru[anggota_pertama][phone]"
             >
@@ -234,6 +274,16 @@
         <div class="mb-3">
           <label class="form-label" for="namaAnggotaKedua">Nama</label>
           <input type="text" class="form-control" id="namaAnggotaKedua" name="baru[anggota_kedua][nama]"
+             required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="jurusanAnggotaKedua">Jurusan / Departemen / Program Studi</label>
+          <input type="text" class="form-control" id="jurusanAnggotaKedua" name="baru[anggota_kedua][jurusan]"
+             required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="angkatanAnggotaKedua">Tahun Angkatan</label>
+          <input type="text" class="form-control" id="angkatanAnggotaKedua" name="baru[anggota_kedua][angkatan]"
              required>
         </div>
         <div class="mb-3">
