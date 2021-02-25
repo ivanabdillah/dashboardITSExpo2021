@@ -14,9 +14,9 @@
     <div class="btn-group mx-3 my-2" role="group">
       <a href="{{route('admin.pembayaran')}}" class="btn btn-outline-primary @if(!$filter) active @endif">Semua</a>
       <a href="{{route('admin.pembayaran', 'sudah')}}"
-          class="btn btn-outline-primary @if($filter && $filter == 'sudah') active @endif">Sudah Bayar</a>
+          class="btn btn-outline-primary @if($filter && $filter == 'sudah') active @endif">Terverifikasi</a>
       <a href="{{route('admin.pembayaran', 'belum')}}"
-          class="btn btn-outline-primary @if($filter && $filter == 'belum') active @endif">Belum Bayar</a>
+          class="btn btn-outline-primary @if($filter && $filter == 'belum') active @endif">Belum Diverifikasi</a>
     </div>
   </div>
   <div class="card-body pt-0">
@@ -52,7 +52,8 @@
           </td>
           @if($invoice['approver_id'] and $invoice['approved_at'])
           <td>
-            <p class="text-success">Terverifikasi</p>
+            <a class="btn btn-danger"
+              href="{{route('admin.pembayaran.unverif', $invoice['id'])}}">Un-Verifikasi</a>
           </td>
           @else
           @if($invoice['payment_proof'])

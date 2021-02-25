@@ -29,7 +29,7 @@ class HomeController extends Controller
         if ($user['role']['id'] == 2 or $user['role']['name'] === 'admin') {
             return redirect()->route('admin.dashboard');
         } elseif ($user['role']['id'] == 1 or $user['role']['name'] === 'peserta') {
-            return redirect()->route('pengguna.biodata.form');
+            return redirect()->route('pengguna.pengumuman');
         }
     }
 }

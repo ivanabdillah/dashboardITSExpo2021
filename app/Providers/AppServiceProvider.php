@@ -32,6 +32,12 @@ class AppServiceProvider extends ServiceProvider
                 $menu = [
                     ['header' => 'main_navigation'],
                     [
+                        'text'  => 'Pengumuman',
+                        'url' => '/pengguna/pengumuman',
+                        'icon' => 'fa fa-fw fa-bullhorn',
+                        'active' => ['/pengguna/pengumuman']
+                    ],
+                    [
                         'text'  => 'Biodata',
                         'url' => '/pengguna/biodata',
                         'icon' => 'fa fa-fw fa-users',
@@ -59,6 +65,12 @@ class AppServiceProvider extends ServiceProvider
                         'url' => '/admin/dashboard',
                         'icon' => 'fa fa-fw fa-home',
                         'active' => ['/admin/dashboard']
+                    ],
+                    [
+                        'text'  => 'Pengumuman',
+                        'url' => '/admin/pengumuman',
+                        'icon' => 'fa fa-fw fa-bullhorn',
+                        'active' => ['/admin/pengumuman']
                     ],
                     [
                         'text'  => 'Pembayaran',

@@ -6,6 +6,7 @@ use App\Http\Controllers\BeasiswaFairController;
 use App\Http\Controllers\BPCController;
 use App\Http\Controllers\ConferenceController;
 use App\Http\Controllers\PaperCompetitionController;
+use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\VirtualArtExhibitionController;
@@ -91,14 +92,21 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/pembayaran/{filter?}', [PembayaranController::class, 'halamanVerifikasi'])->name('admin.pembayaran');
             Route::get('/bukti-bayar/{id}', [PembayaranController::class, 'berkasBukti'])->name('admin.pembayaran.berkas-bukti');
             Route::get('/pembayaran/verifikasi/{id}', [PembayaranController::class, 'verifPembayaran'])->name('admin.pembayaran.verif');
+            Route::get('/pembayaran/unverifikasi/{id}', [PembayaranController::class, 'unVerifPembayaran'])->name('admin.pembayaran.unverif');
+
             Route::get('/promo', [AdminController::class, 'promo'])->name('admin.promo');
             Route::post('/promo', [AdminController::class, 'tambahPromo'])->name('admin.promo.tambah');
             Route::put('/promo/{id}', [AdminController::class, 'updatePromo'])->name('admin.promo.update');
             Route::delete('/promo/{id}', [AdminController::class, 'hapusPromo'])->name('admin.promo.hapus');
+
+            Route::get('/pengumuman', [AdminController::class, 'indexAnnouncement'])->name('admin.pengumuman');
+            Route::post('/pengumuman/tambah', [AdminController::class, 'tambahAnnouncement'])->name('admin.pengumuman.tambah');
+            Route::delete('/pengumuman/{id}', [AdminController::class, 'hapusAnnouncement'])->name('admin.pengumuman.hapus');
         });
 
         // Rute untuk Peserta
         Route::prefix('/pengguna')->middleware(['peserta'])->group(function () {
+            Route::get('/pengumuman', [PesertaController::class, 'indexAnnouncement'])->name('pengguna.pengumuman');
             Route::get('/password', [UserController::class, 'passwordForm'])->name('pengguna.password.form');
             Route::put('/password', [UserController::class, 'passwordUpdate'])->name('pengguna.password.update');
             Route::get('/biodata', [UserController::class, 'biodataForm'])->name('pengguna.biodata.form');

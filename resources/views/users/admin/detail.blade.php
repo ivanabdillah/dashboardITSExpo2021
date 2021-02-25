@@ -255,6 +255,8 @@
               @if($peserta['invoice']['payment_proof'])
               <a href="{{route('admin.pembayaran.berkas-bukti', $peserta['id'])}}" target="_blank"
               class="btn bg-lime btn-block my-2">Lihat bukti</a>
+              <a class="btn btn-danger btn-block"
+              href="{{route('admin.pembayaran.unverif', $peserta['invoice']['id'])}}">Un-Verifikasi</a>
               @endif
               @else
               <input type="text" class="form-control" id="bayar" name="anggota_kedua[nama]"
@@ -263,7 +265,7 @@
               <a href="{{route('admin.pembayaran.berkas-bukti', $peserta['id'])}}" target="_blank"
               class="btn bg-lime btn-block my-2">Lihat bukti</a>
               <a class="btn btn-warning btn-block"
-                href="{{route('admin.pembayaran.verif', $peserta['invoice'])}}">Verifikasi</a>
+                href="{{route('admin.pembayaran.verif', $peserta['invoice']['id'])}}">Verifikasi</a>
               </a>
               @else
               <input type="text" class="form-control" id="bayar" name="anggota_kedua[nama]"

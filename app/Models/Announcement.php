@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Competition extends Model
+class Announcement extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Competition extends Model
      *
      * @var string
      */
-    protected $table = 'competitions';
+    protected $table = 'announcements';
 
     /**
      * The primary key associated with the table.
@@ -28,15 +28,14 @@ class Competition extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'title',
+        'content',
+        'competition_id'
+    ];
 
-    public function team()
+    public function competition()
     {
-        return $this->hasMany(TeamProfile::class, 'competition_id', 'id');
-    }
-
-    public function announcements()
-    {
-        return $this->hasMany(Announcement::class, 'competition_id', 'id');
+        return $this->belongsTo(Competition::class, 'competition_id', 'id');
     }
 }

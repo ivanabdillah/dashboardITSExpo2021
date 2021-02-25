@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Models\Promo;
 use App\Mail\VerifPembayaran;
+use App\Mail\UnVerifikasiPembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -96,8 +97,19 @@ class PembayaranController extends Controller
         return redirect()->route('admin.pembayaran')->with('success', 'Berhasil di verifikasi');
     }
 
-    public function tolakPembayaran()
+    public function unVerifPembayaran($id)
     {
+        $invoice = Invoice::where('id', $id)->with('team.user')->firstOrFail();
+        $invoice->approver_id = null;
+        $invoice->approved_at = null;
+        $invoice->save();
+
+        try {
+            Mail::to($invoice->team->user->email)->send(new UnVerifikasiPembayaran($invoice->team));
+        } catch (Throwable $e) {
+        }
+
+        return redirect()->route('admin.pembayaran')->with('success', 'Berhasil di verifikasi');
     }
 
     public function berkasBukti($id)

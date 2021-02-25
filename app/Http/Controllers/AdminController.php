@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnnouncementPublished;
+use App\Models\Announcement;
 use App\Models\Competition;
 use App\Models\Promo;
 use App\Models\TeamProfile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Throwable;
 
 class AdminController extends Controller
 {
@@ -71,5 +76,51 @@ class AdminController extends Controller
             $promo->delete();
             return redirect()->route('admin.promo')->with('success', 'Promo berhasil dihapus');
         }
+    }
+
+    public function indexAnnouncement()
+    {
+        $announcements = Announcement::with('competition')->orderBy('created_at', 'DESC')->get();
+        $competition = Competition::get();
+        return view('users.admin.announcement')->with(['announcements' => $announcements, 'competitions' => $competition]);
+    }
+
+    public function tambahAnnouncement(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'competition_id' => 'nullable|exists:competitions,id'
+        ]);
+        Announcement::create($data);
+
+        $mailingList = [];
+        if ($data['competition_id']) {
+            $teams = TeamProfile::where('competition_id', $data['competition_id'])->with('user')->get();
+            foreach ($teams as $team) {
+                array_push($mailingList, $team['user']['email']);
+            }
+        } else {
+            $users = User::select('email')->where('userable_type', 'App\Models\TeamProfile')->get();
+            foreach ($users as $user) {
+                array_push($mailingList, $user['email']);
+            }
+        }
+        try {
+            foreach ($mailingList as $recipient) {
+                Mail::to($recipient)->send(new AnnouncementPublished($data));
+            }
+        } catch (Throwable $e) {
+        }
+
+        return redirect()->route('admin.pengumuman')->with('success', 'Pengumuman dipublikasikan');
+    }
+
+    public function hapusAnnouncement($id)
+    {
+        $announcement = Announcement::where('id', $id)->firstOrFail();
+        $announcement->delete();
+
+        return redirect()->route('admin.pengumuman')->with('success', 'Pengumuman dihapus');
     }
 }

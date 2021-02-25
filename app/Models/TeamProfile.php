@@ -64,7 +64,7 @@ class TeamProfile extends Model
 
     public function submission()
     {
-        return $this->hasOne(Submission::class, 'team_id', 'id');
+        return $this->hasMany(Submission::class, 'team_id', 'id');
     }
 
     public function invoice()
