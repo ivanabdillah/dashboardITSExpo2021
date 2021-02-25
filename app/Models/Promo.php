@@ -31,6 +31,13 @@ class Promo extends Model
     protected $fillable = [
         'name',
         'discount',
+        'start',
+        'end'
+    ];
+
+    protected $dates = [
+        'start',
+        'end'
     ];
 
     public function invoice()

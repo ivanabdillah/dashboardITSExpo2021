@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Throwable;
 
 use App\Models\User;
@@ -23,6 +24,37 @@ class UserController extends Controller
     public function passwordForm()
     {
         return view('users.password');
+    }
+
+    public function adminPasswordForm()
+    {
+        return view('users.admin.password');
+    }
+
+    public function adminPasswordUpdate(Request $request)
+    {
+        $passwords = $request->validate([
+            'old_password' => 'required|string',
+            'new_password' => 'required|string',
+            'confirm_password' => 'required|string'
+        ]);
+
+        if (Hash::check($passwords['old_password'], $request->user()->password)) {
+            if ($passwords['new_password'] !== $passwords['confirm_password']) {
+                return redirect()->route('admin.password.form')->withErrors('Konfirmasi password tidak benar');
+            } else {
+                try {
+                    $request->user()->update([
+                        'password' => Hash::make($passwords['new_password'])
+                    ]);
+                    return redirect()->route('admin.password.form')->with('success', 'Password berhasil diubah');
+                } catch (Throwable $e) {
+                    return redirect()->route('admin.password.form')->withErrors("Terjadi kesalahan : {$e->getMessage()}");
+                }
+            }
+        } else {
+            return redirect()->route('admin.password.form')->withErrors('Password lama tidak benar');
+        }
     }
 
     public function passwordUpdate(Request $request)
@@ -60,21 +92,21 @@ class UserController extends Controller
 
     public function biodataUpdate(Request $request)
     {
-//        dd($request);
+        //        dd($request);
         $teamProfile = TeamProfile::findOrFail(Auth::user()->userable_id);
         $ketua = TeamMember::findOrFail($teamProfile->ketua_id);
         if ($request->has('ketua.foto')) {
-            $fotoName = $request->ketua['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('ketua.foto')->getClientOriginalExtension();
-            $photoPath = 'images/bcc/foto/' . $fotoName;
-            Storage::put($photoPath, $request->file('ketua.foto'));
-            $ketua->photo_path = $photoPath;
+            $fotoName = $request->ketua['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('ketua.foto')->getClientOriginalExtension();
+            $photoPath = 'images/bcc/foto/';
+            Storage::putFileAs($photoPath, $request->file('ketua.foto'), $fotoName);
+            $ketua->photo_path = $photoPath . $fotoName;
         }
 
         if ($request->has('ketua.ktm')) {
-            $ktmName = $request->ketua['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('ketua.ktm')->getClientOriginalExtension();
-            $ktmPath = 'images/bcc/ktm/' . $ktmName;
-            Storage::put($ktmPath, $request->file('ketua.ktm'));
-            $ketua->ktm_path = $ktmPath;
+            $ktmName = $request->ketua['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('ketua.ktm')->getClientOriginalExtension();
+            $ktmPath = 'images/bcc/ktm/';
+            Storage::putFileAs($ktmPath, $request->file('ketua.ktm'), $ktmName);
+            $ketua->ktm_path = $ktmPath . $ktmName;
         }
 
         $ketua->name = $request->ketua['nama'];
@@ -105,20 +137,20 @@ class UserController extends Controller
         }
 
         if ($request->has('baru.anggota_pertama')) {
-            $fotoName = $request->baru['anggota_pertama']['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('baru.anggota_pertama.foto')->getClientOriginalExtension();
-            $photoPath = 'images/bcc/foto/' . $fotoName;
-            Storage::put($photoPath, $request->file('baru.anggota_pertama.foto'));
+            $fotoName = $request->baru['anggota_pertama']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_pertama.foto')->getClientOriginalExtension();
+            $photoPath = 'images/bcc/foto/';
+            Storage::putFileAs($photoPath, $request->file('baru.anggota_pertama.foto'), $fotoName);
 
-            $ktmName = $request->baru['anggota_pertama']['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('baru.anggota_pertama.ktm')->getClientOriginalExtension();
-            $ktmPath = 'images/bcc/ktm/' . $ktmName;
-            Storage::put($ktmPath, $request->file('baru.anggota_pertama.ktm'));
+            $ktmName = $request->baru['anggota_pertama']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_pertama.ktm')->getClientOriginalExtension();
+            $ktmPath = 'images/bcc/ktm/';
+            Storage::putFileAs($ktmPath, $request->file('baru.anggota_pertama.ktm'), $ktmName);
 
             TeamMember::create([
                 'name' => $request->baru['anggota_pertama']['nama'],
                 'majors' => $request->baru['anggota_pertama']['jurusan'],
                 'year' => $request->baru['anggota_pertama']['angkatan'],
-                'photo_path' => $photoPath,
-                'ktm_path' => $ktmPath,
+                'photo_path' => $photoPath . $fotoName,
+                'ktm_path' => $ktmPath . $ktmName,
                 'phone' => $request->baru['anggota_pertama']['phone'],
                 'line' => $request->baru['anggota_pertama']['line'],
             ]);
@@ -128,20 +160,20 @@ class UserController extends Controller
         }
 
         if ($request->has('baru.anggota_kedua')) {
-            $fotoName = $request->baru['anggota_kedua']['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('baru.anggota_kedua.foto')->getClientOriginalExtension();
-            $photoPath = 'images/bcc/foto/' . $fotoName;
-            Storage::put($photoPath, $request->file('baru.anggota_kedua.foto'));
+            $fotoName = $request->baru['anggota_kedua']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_kedua.foto')->getClientOriginalExtension();
+            $photoPath = 'images/bcc/foto/';
+            Storage::putFileAs($photoPath, $request->file('baru.anggota_kedua.foto'), $fotoName);
 
-            $ktmName = $request->baru['anggota_kedua']['nama'].Carbon::now()->format('Ymd His') .'.'. $request->file('baru.anggota_kedua.ktm')->getClientOriginalExtension();
-            $ktmPath = 'images/bcc/ktm/' . $ktmName;
-            Storage::put($ktmPath, $request->file('baru.anggota_kedua.ktm'));
+            $ktmName = $request->baru['anggota_kedua']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_kedua.ktm')->getClientOriginalExtension();
+            $ktmPath = 'images/bcc/ktm/';
+            Storage::putFileAs($ktmPath, $request->file('baru.anggota_kedua.ktm'), $ktmName);
 
             TeamMember::create([
                 'name' => $request->baru['anggota_kedua']['nama'],
                 'majors' => $request->baru['anggota_kedua']['jurusan'],
                 'year' => $request->baru['anggota_kedua']['angkatan'],
-                'photo_path' => $photoPath,
-                'ktm_path' => $ktmPath,
+                'photo_path' => $photoPath . $fotoName,
+                'ktm_path' => $ktmPath  . $ktmName,
                 'phone' => $request->baru['anggota_kedua']['phone'],
                 'line' => $request->baru['anggota_kedua']['line'],
             ]);
@@ -151,5 +183,22 @@ class UserController extends Controller
         }
 
         return redirect()->route('pengguna.biodata.form')->with('success', 'data has been updated');
+    }
+
+    public function berkasBiodata(Request $request)
+    {
+        $request->validate([
+            'berkas' => 'required'
+        ]);
+
+        $path = $request->berkas;
+
+        if (File::isDirectory(storage_path('app/' . $path))) {
+            return Storage::disk('local')->response(Storage::disk('local')->files($path)[0]);
+        } else if (File::isFile(storage_path('app/' . $path))) {
+            return Storage::disk('local')->response($path);
+        }
+
+        return redirect()->back()->withErrors('Berkas tidak ditemukan');
     }
 }

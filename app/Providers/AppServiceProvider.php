@@ -64,9 +64,21 @@ class AppServiceProvider extends ServiceProvider
                         'text'  => 'Pembayaran',
                         'url' => '/admin/pembayaran',
                         'icon' => 'fa fa-fw fa-funnel-dollar',
-                        'active' => ['/admin/pembayaran']
+                        'active' => ['/admin/pembayaran/*', 'admin/peserta/*']
                     ],
-                    ['header' => 'account_settings']
+                    [
+                        'text'  => 'Promo',
+                        'url' => '/admin/promo',
+                        'icon' => 'fa fa-fw fa-ticket-alt',
+                        'active' => ['/admin/promo']
+                    ],
+                    ['header' => 'account_settings'],
+                    [
+                        'text'        => 'Ubah Password',
+                        'url'         => '/admin/password',
+                        'icon'        => 'fa fa-fw fa-lock',
+                        'active'      => ['/admin/password/*']
+                    ]
                 ];
             }
 

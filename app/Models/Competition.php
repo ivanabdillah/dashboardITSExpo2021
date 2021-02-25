@@ -29,4 +29,9 @@ class Competition extends Model
      * @var array
      */
     protected $fillable = ['name'];
+
+    public function team()
+    {
+        return $this->hasMany(TeamProfile::class, 'competition_id', 'id');
+    }
 }

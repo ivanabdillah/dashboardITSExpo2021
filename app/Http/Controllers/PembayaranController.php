@@ -71,9 +71,12 @@ class PembayaranController extends Controller
 
     public function halamanVerifikasi($filter = null)
     {
-        if ($filter) {
+        if ($filter == 'sudah') {
+            $invoices = Invoice::with('team.competition', 'team.user', 'promo')->whereNotNull('approver_id')->whereNotNull('approved_at')->get();
+        } else if ($filter == 'belum') {
+            $invoices = Invoice::with('team.competition', 'team.user', 'promo')->whereNull('approver_id')->whereNull('approved_at')->get();
         } else {
-            $invoices = Invoice::with('team.competition')->get();
+            $invoices = Invoice::with('team.competition', 'team.user')->get();
         }
         return view('pembayaran.admin.index')->with(['invoices' => $invoices, 'filter' => $filter]);
     }
@@ -97,9 +100,13 @@ class PembayaranController extends Controller
     {
     }
 
-    public function berkasBukti(Request $request, $id)
+    public function berkasBukti($id)
     {
         $invoice = Invoice::where('team_id', $id)->firstOrFail();
-        return Storage::response($invoice->payment_proof);
+        if (Storage::exists($invoice->payment_proof)) {
+            return Storage::response($invoice->payment_proof);
+        } else {
+            return redirect()->back()->withErrors('Berkas tidak ditemukan');
+        }
     }
 }

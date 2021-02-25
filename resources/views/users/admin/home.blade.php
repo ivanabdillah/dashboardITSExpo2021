@@ -11,7 +11,29 @@
 <div class="card mb-0">
   <div class="card-header">Rumah Admin</div>
   <div class="card-body">
-    Halo {{$user['userable']['name']}}
+    <h4>Halo {{$user['userable']['name']}} ({{$user['userable']['division']}})</h4>
+    <p>Jumlah peserta :</p>
+    <div class="row">
+      <div class="col-12 col-md-6">
+          <table class="table table-borderless table-striped">
+            <thead>
+              <th>Kompetisi</th>
+              <th>Jumlah Peserta</th>
+            </thead>
+              <tbody>
+                @forelse ($competition as $item)
+                <tr>
+                  <td class="font-weight-normal">{{strtoupper($item['name'])}}&nbsp;&nbsp;&nbsp;&nbsp; :</td>
+                  <td>{{$item['team_count']}}</td>
+                </tr>
+                @empty
+                <tr>
+                  Tidak Ada Data
+                </tr>
+                @endforelse
+              </tbody>
+          </table>
+      </div>
   </div>
 </div>
 

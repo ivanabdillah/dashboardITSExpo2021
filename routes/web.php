@@ -81,10 +81,20 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {
         // Rute untuk Admin
         Route::prefix('/admin')->middleware(['admin'])->group(function () {
+
+            Route::get('/password', [UserController::class, 'adminPasswordForm'])->name('admin.password.form');
+            Route::put('/password', [UserController::class, 'adminPasswordUpdate'])->name('admin.password.update');
+
             Route::get('/dashboard', [AdminController::class, 'home'])->name('admin.dashboard');
-            Route::get('/pembayaran', [PembayaranController::class, 'halamanVerifikasi'])->name('admin.pembayaran');
+            Route::get('/peserta/{id}', [AdminController::class, 'peserta'])->name('admin.peserta');
+            Route::post('/berkas/biodata', [UserController::class, 'berkasBiodata'])->name('admin.berkas.biodata');
+            Route::get('/pembayaran/{filter?}', [PembayaranController::class, 'halamanVerifikasi'])->name('admin.pembayaran');
             Route::get('/bukti-bayar/{id}', [PembayaranController::class, 'berkasBukti'])->name('admin.pembayaran.berkas-bukti');
             Route::get('/pembayaran/verifikasi/{id}', [PembayaranController::class, 'verifPembayaran'])->name('admin.pembayaran.verif');
+            Route::get('/promo', [AdminController::class, 'promo'])->name('admin.promo');
+            Route::post('/promo', [AdminController::class, 'tambahPromo'])->name('admin.promo.tambah');
+            Route::put('/promo/{id}', [AdminController::class, 'updatePromo'])->name('admin.promo.update');
+            Route::delete('/promo/{id}', [AdminController::class, 'hapusPromo'])->name('admin.promo.hapus');
         });
 
         // Rute untuk Peserta
