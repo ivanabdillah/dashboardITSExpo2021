@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>ITS Expo 2021</b>',
+    'logo' => '<strong class="font-weight-bold">ITS Expo 2021</strong>',
     'logo_img' => 'vendor/adminlte/dist/img/Logo.png',
     'logo_img_class' => 'brand-image',
     'logo_img_xl' => null,
