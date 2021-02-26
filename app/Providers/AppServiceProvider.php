@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
             $menu = [];
             if (Auth::user()->role_id == 1) {
                 $menu = [
-                    ['header' => 'main_navigation'],
+                    ['header' => 'NAVIGASI UTAMA'],
                     [
                         'text'  => 'Pengumuman',
                         'url' => '/pengguna/pengumuman',
@@ -49,7 +49,19 @@ class AppServiceProvider extends ServiceProvider
                         'icon' => 'fa fa-fw fa-money-check-alt',
                         'active' => ['/pengguna/pembayaran']
                     ],
-                    ['header' => 'account_settings'],
+                    [
+                        'text'  => 'Pengumpulan',
+                        'url' => '/pengguna/submission',
+                        'icon' => 'fa fa-fw fa-trophy',
+                        'active' => ['/pengguna/submission']
+                    ],
+                    [
+                        'text'  => 'Berkas Dikumpulkan',
+                        'url' => '/pengguna/submission/diunggah',
+                        'icon' => 'fa fa-fw fa-file-upload',
+                        'active' => ['/pengguna/submission/diunggah']
+                    ],
+                    ['header' => 'PENGATURAN AKUN'],
                     [
                         'text'        => 'Ubah Password',
                         'url'         => '/pengguna/password',
@@ -59,7 +71,7 @@ class AppServiceProvider extends ServiceProvider
                 ];
             } elseif (Auth::user()->role_id == 2) {
                 $menu = [
-                    ['header' => 'main_navigation'],
+                    ['header' => 'NAVIGASI UTAMA'],
                     [
                         'text'  => 'Beranda',
                         'url' => '/admin/dashboard',
@@ -79,12 +91,24 @@ class AppServiceProvider extends ServiceProvider
                         'active' => ['/admin/pembayaran/*', 'admin/peserta/*']
                     ],
                     [
+                        'text'  => 'Instruksi',
+                        'url' => '/admin/instruksi',
+                        'icon' => 'fa fa-fw fa-scroll',
+                        'active' => ['/admin/instruksi/*']
+                    ],
+                    [
                         'text'  => 'Promo',
                         'url' => '/admin/promo',
                         'icon' => 'fa fa-fw fa-ticket-alt',
                         'active' => ['/admin/promo']
                     ],
-                    ['header' => 'account_settings'],
+                    [
+                        'text'  => 'Berkas Dikumpulkan',
+                        'url' => '/admin/submission',
+                        'icon' => 'fa fa-fw fa-file-upload',
+                        'active' => ['/admin/submission/*']
+                    ],
+                    ['header' => 'PENGATURAN AKUN'],
                     [
                         'text'        => 'Ubah Password',
                         'url'         => '/admin/password',

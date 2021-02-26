@@ -39,4 +39,9 @@ class Competition extends Model
     {
         return $this->hasMany(Announcement::class, 'competition_id', 'id');
     }
+
+    public function instructions()
+    {
+        return $this->hasMany(Instruction::class, 'competition_id', 'id');
+    }
 }

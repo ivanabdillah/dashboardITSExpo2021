@@ -53,7 +53,7 @@
           @if($invoice['approver_id'] and $invoice['approved_at'])
           <td>
             <a class="btn btn-danger"
-              href="{{route('admin.pembayaran.unverif', $invoice['id'])}}">Un-Verifikasi</a>
+              href="{{route('admin.pembayaran.unverif', $invoice['id'])}}">Unverif</a>
           </td>
           @else
           @if($invoice['payment_proof'])

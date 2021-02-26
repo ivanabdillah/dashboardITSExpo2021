@@ -13,8 +13,9 @@ class AddInstructionIdColumnToSubmissionTable extends Migration
      */
     public function up()
     {
-        Schema::table('submission', function (Blueprint $table) {
-            //
+        Schema::table('submissions', function (Blueprint $table) {
+            $table->foreignId('instruction_id')->after('team_id');
+            $table->string('status')->after('instruction_id')->nullable(); // 'lolos', 'tidak lolos', null
         });
     }
 
@@ -25,8 +26,9 @@ class AddInstructionIdColumnToSubmissionTable extends Migration
      */
     public function down()
     {
-        Schema::table('submission', function (Blueprint $table) {
-            //
+        Schema::table('submissions', function (Blueprint $table) {
+            $table->dropColumn('instruction_id');
+            $table->dropColumn('status');
         });
     }
 }

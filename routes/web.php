@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BCCController;
 use App\Http\Controllers\BeasiswaFairController;
 use App\Http\Controllers\BPCController;
+use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\ConferenceController;
 use App\Http\Controllers\PaperCompetitionController;
 use App\Http\Controllers\PesertaController;
@@ -102,6 +103,20 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/pengumuman', [AdminController::class, 'indexAnnouncement'])->name('admin.pengumuman');
             Route::post('/pengumuman/tambah', [AdminController::class, 'tambahAnnouncement'])->name('admin.pengumuman.tambah');
             Route::delete('/pengumuman/{id}', [AdminController::class, 'hapusAnnouncement'])->name('admin.pengumuman.hapus');
+
+            Route::get('/instruksi', [CompetitionController::class, 'index'])->name('admin.instruksi');
+            Route::get('/instruksi/baru', [CompetitionController::class, 'create'])->name('admin.instruksi.baru');
+            Route::post('/instruksi', [CompetitionController::class, 'store'])->name('admin.instruksi.tambah');
+            Route::delete('/instruksi/{id}', [CompetitionController::class, 'destroy'])->name('admin.instruksi.hapus');
+            Route::get('/instruksi/{id}/edit', [CompetitionController::class, 'edit'])->name('admin.instruksi.edit');
+            Route::put('/instruksi/{id}', [CompetitionController::class, 'update'])->name('admin.instruksi.update');
+            Route::put('/instruksi/{id}/toggle', [CompetitionController::class, 'toggle'])->name('admin.instruksi.toggle');
+
+            Route::get('/submission/{id?}', [CompetitionController::class, 'indexAdmin'])->name('admin.submission.index');
+            Route::post('/submission/berkas/', [CompetitionController::class, 'berkasSubmission'])->name('admin.submission.berkas');
+
+            Route::get('/submission/lolos/{id}/{submissionId}', [CompetitionController::class, 'loloskan'])->name('admin.submission.lolos');
+            Route::get('/submission/tidak-lolos/{id}/{submissionId}', [CompetitionController::class, 'tidakLoloskan'])->name('admin.submission.tidak-lolos');
         });
 
         // Rute untuk Peserta
@@ -111,6 +126,12 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/password', [UserController::class, 'passwordUpdate'])->name('pengguna.password.update');
             Route::get('/biodata', [UserController::class, 'biodataForm'])->name('pengguna.biodata.form');
             Route::put('/biodata', [UserController::class, 'biodataUpdate'])->name('pengguna.biodata.update');
+
+            Route::get('/submission', [CompetitionController::class, 'indexPeserta'])->name('pengguna.submission.index');
+            Route::get('/submission/diunggah', [CompetitionController::class, 'listSubmmission'])->name('pengguna.submission.list');
+            Route::post('/submission', [CompetitionController::class, 'submissionAdd'])->name('pengguna.submission.store');
+            Route::post('/submission/berkas/', [CompetitionController::class, 'berkasSubmission'])->name('pengguna.submission.berkas');
+
 
             Route::prefix('/pembayaran')->group(function () {
                 Route::get('/', [PembayaranController::class, 'halamanPembayaran'])->name('pengguna.pembayaran');

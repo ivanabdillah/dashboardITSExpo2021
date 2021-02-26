@@ -33,11 +33,18 @@ class Submission extends Model
         'name',
         'description',
         'path',
-        'team_id'
+        'team_id',
+        'instruction_id',
+        'status'
     ];
 
     public function team()
     {
         return $this->belongsTo(TeamProfile::class, 'team_id', 'id');
+    }
+
+    public function instruction()
+    {
+        return $this->belongsTo(Instruction::class, 'instruction_id', 'id');
     }
 }
