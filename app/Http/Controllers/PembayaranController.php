@@ -94,7 +94,7 @@ class PembayaranController extends Controller
         } catch (Throwable $e) {
         }
 
-        return redirect()->route('admin.pembayaran')->with('success', 'Berhasil di verifikasi');
+        return redirect()->route('admin.pembayaran')->with('success', 'Berhasil diverifikasi');
     }
 
     public function unVerifPembayaran($id)
@@ -109,7 +109,7 @@ class PembayaranController extends Controller
         } catch (Throwable $e) {
         }
 
-        return redirect()->route('admin.pembayaran')->with('success', 'Berhasil di verifikasi');
+        return redirect()->route('admin.pembayaran')->with('success', 'Berhasil di unverifikasi');
     }
 
     public function berkasBukti($id)
