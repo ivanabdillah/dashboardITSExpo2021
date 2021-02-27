@@ -212,20 +212,18 @@ class CompetitionController extends Controller
         ]);
     }
 
-    public function loloskan($submissionId, $id)
+    public function loloskan($id, $submissionId)
     {
         $submission = Submission::where('id', $submissionId)->firstOrFail();
-
         $submission->status = 'lolos';
         $submission->save();
 
         return redirect()->route('admin.submission.index', $id)->with('success', 'Berhasil diloloskan');
     }
 
-    public function tidakLoloskan($submissionId, $id)
+    public function tidakLoloskan($id, $submissionId)
     {
         $submission = Submission::where('id', $submissionId)->firstOrFail();
-
         $submission->status = 'tidak lolos';
         $submission->save();
 

@@ -112,11 +112,11 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/instruksi/{id}', [CompetitionController::class, 'update'])->name('admin.instruksi.update');
             Route::put('/instruksi/{id}/toggle', [CompetitionController::class, 'toggle'])->name('admin.instruksi.toggle');
 
-            Route::get('/submission/{id?}', [CompetitionController::class, 'indexAdmin'])->name('admin.submission.index');
-            Route::post('/submission/berkas/', [CompetitionController::class, 'berkasSubmission'])->name('admin.submission.berkas');
-
             Route::get('/submission/lolos/{id}/{submissionId}', [CompetitionController::class, 'loloskan'])->name('admin.submission.lolos');
             Route::get('/submission/tidak-lolos/{id}/{submissionId}', [CompetitionController::class, 'tidakLoloskan'])->name('admin.submission.tidak-lolos');
+
+            Route::get('/submission/{id?}', [CompetitionController::class, 'indexAdmin'])->name('admin.submission.index');
+            Route::post('/submission/berkas/', [CompetitionController::class, 'berkasSubmission'])->name('admin.submission.berkas');
         });
 
         // Rute untuk Peserta
