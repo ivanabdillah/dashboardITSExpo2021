@@ -207,11 +207,20 @@ class UserController extends Controller
 
         $path = $request->berkas;
 
-        if (File::isDirectory(storage_path('app/' . $path))) {
-            return Storage::disk('local')->response(Storage::disk('local')->files($path)[0]);
-        } else if (File::isFile(storage_path('app/' . $path))) {
-            return Storage::disk('local')->response($path);
+        if (str_contains($path, 'twibbon')) {
+            if (File::isDirectory(storage_path('app/public' . $path))) {
+                return Storage::disk('public')->response(Storage::disk('public')->files($path)[0]);
+            } else if (File::isFile(storage_path('app/public' . $path))) {
+                return Storage::disk('public')->response($path);
+            }
+        } else {
+            if (File::isDirectory(storage_path('app/' . $path))) {
+                return Storage::disk('local')->response(Storage::disk('local')->files($path)[0]);
+            } else if (File::isFile(storage_path('app/' . $path))) {
+                return Storage::disk('local')->response($path);
+            }
         }
+
 
         return redirect()->back()->withErrors('Berkas tidak ditemukan');
     }
