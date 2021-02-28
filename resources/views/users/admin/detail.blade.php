@@ -34,6 +34,17 @@
               <option>{{strtoupper($peserta['competition']['name'])}}</option>
             </select>
           </div>
+
+          @if($submission)
+            <form action="{{route('admin.berkas.biodata')}}" method="POST">
+              @csrf
+              <input type="hidden" name="berkas" value="{{$submission->path}}">
+              <div class="mb-3">
+                <label class="form-label" for="twibbonTim">Twibbon</label>
+                <button class="btn btn-block btn-primary" id="twibbonTim"  formtarget="_blank">Lihat Twibbon</button>
+              </div>
+            </form>
+            @endif
           <hr>
           <h4 class="text-center">Ketua</h4>
           <div id="ketua">

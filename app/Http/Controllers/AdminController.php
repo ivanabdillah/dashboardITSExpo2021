@@ -6,6 +6,7 @@ use App\Mail\AnnouncementPublished;
 use App\Models\Announcement;
 use App\Models\Competition;
 use App\Models\Promo;
+use App\Models\Submission;
 use App\Models\TeamProfile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,7 +27,11 @@ class AdminController extends Controller
     public function peserta($id)
     {
         $peserta = TeamProfile::with('user', 'ketua', 'anggotaPertama', 'anggotaKedua', 'competition', 'invoice.promo')->where('id', $id)->firstOrFail();
-        return view('users.admin.detail')->with('peserta', $peserta);
+        $submission = Submission::where('team_id', $id)->where('name', 'Twibbon')->first();
+        return view('users.admin.detail')->with([
+            'peserta' => $peserta,
+            'submission' => $submission
+        ]);
     }
 
     public function promo()
