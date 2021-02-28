@@ -30,7 +30,7 @@
   <div class="card-body">
     <div class="mb-3">
       <label class="form-label" for="instruksi">Instruksi</label>
-      <select class="form-control form-select" id="instruksi" @if(!$instructions) disabled @endif>
+      <select class="form-control form-select" id="instruksi" @if(!$instructions) disabled @endif  onchange="gantiLaman(this)">
         @forelse ($instructions as $i)
         @if($i['id'] == $id)
           <option value="{{$i['id']}}" selected>{{$i['title']}}</option>
