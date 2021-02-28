@@ -88,8 +88,11 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/password', [UserController::class, 'adminPasswordUpdate'])->name('admin.password.update');
 
             Route::get('/dashboard', [AdminController::class, 'home'])->name('admin.dashboard');
+            Route::get('/peserta/export/{id}', [AdminController::class, 'pesertaExport'])->name('admin.peserta.export');
             Route::get('/peserta/{id}', [AdminController::class, 'peserta'])->name('admin.peserta');
             Route::post('/berkas/biodata', [UserController::class, 'berkasBiodata'])->name('admin.berkas.biodata');
+
+
             Route::get('/pembayaran/{filter?}', [PembayaranController::class, 'halamanVerifikasi'])->name('admin.pembayaran');
             Route::get('/bukti-bayar/{id}', [PembayaranController::class, 'berkasBukti'])->name('admin.pembayaran.berkas-bukti');
             Route::get('/pembayaran/verifikasi/{id}', [PembayaranController::class, 'verifPembayaran'])->name('admin.pembayaran.verif');

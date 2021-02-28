@@ -9,6 +9,8 @@ use App\Models\Promo;
 use App\Models\Submission;
 use App\Models\TeamProfile;
 use App\Models\User;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Throwable;
@@ -32,6 +34,13 @@ class AdminController extends Controller
             'peserta' => $peserta,
             'submission' => $submission
         ]);
+    }
+
+    public function pesertaExport($id)
+    {
+        $competition = Competition::where('id', $id)->firstOrFail();
+
+        return Excel::download(new UsersExport($competition), "peserta_{$competition->name}.xlsx");
     }
 
     public function promo()

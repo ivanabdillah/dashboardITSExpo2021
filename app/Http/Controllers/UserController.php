@@ -137,13 +137,20 @@ class UserController extends Controller
         }
 
         if ($request->has('baru.anggota_pertama')) {
-            $fotoName = $request->baru['anggota_pertama']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_pertama.foto')->getClientOriginalExtension();
-            $photoPath = 'images/bcc/foto/';
-            Storage::putFileAs($photoPath, $request->file('baru.anggota_pertama.foto'), $fotoName);
+            if ($request->file('baru.anggota_pertama.foto')) {
+                $fotoName = $request->baru['anggota_pertama']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_pertama.foto')->getClientOriginalExtension();
+                $photoPath = 'images/bcc/foto/';
+                Storage::putFileAs($photoPath, $request->file('baru.anggota_pertama.foto'), $fotoName);
 
-            $ktmName = $request->baru['anggota_pertama']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_pertama.ktm')->getClientOriginalExtension();
-            $ktmPath = 'images/bcc/ktm/';
-            Storage::putFileAs($ktmPath, $request->file('baru.anggota_pertama.ktm'), $ktmName);
+                $ktmName = $request->baru['anggota_pertama']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_pertama.ktm')->getClientOriginalExtension();
+                $ktmPath = 'images/bcc/ktm/';
+                Storage::putFileAs($ktmPath, $request->file('baru.anggota_pertama.ktm'), $ktmName);
+            } else {
+                $photoPath = null;
+                $fotoName = null;
+                $ktmPath = null;
+                $ktmName = null;
+            }
 
             TeamMember::create([
                 'name' => $request->baru['anggota_pertama']['nama'],
@@ -160,13 +167,20 @@ class UserController extends Controller
         }
 
         if ($request->has('baru.anggota_kedua')) {
-            $fotoName = $request->baru['anggota_kedua']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_kedua.foto')->getClientOriginalExtension();
-            $photoPath = 'images/bcc/foto/';
-            Storage::putFileAs($photoPath, $request->file('baru.anggota_kedua.foto'), $fotoName);
+            if ($request->file('baru.anggota_kedua.foto')) {
+                $fotoName = $request->baru['anggota_kedua']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_kedua.foto')->getClientOriginalExtension();
+                $photoPath = 'images/bcc/foto/';
+                Storage::putFileAs($photoPath, $request->file('baru.anggota_kedua.foto'), $fotoName);
 
-            $ktmName = $request->baru['anggota_kedua']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_kedua.ktm')->getClientOriginalExtension();
-            $ktmPath = 'images/bcc/ktm/';
-            Storage::putFileAs($ktmPath, $request->file('baru.anggota_kedua.ktm'), $ktmName);
+                $ktmName = $request->baru['anggota_kedua']['nama'] . Carbon::now()->format('Ymd His') . '.' . $request->file('baru.anggota_kedua.ktm')->getClientOriginalExtension();
+                $ktmPath = 'images/bcc/ktm/';
+                Storage::putFileAs($ktmPath, $request->file('baru.anggota_kedua.ktm'), $ktmName);
+            } else {
+                $photoPath = null;
+                $fotoName = null;
+                $ktmPath = null;
+                $ktmName = null;
+            }
 
             TeamMember::create([
                 'name' => $request->baru['anggota_kedua']['nama'],

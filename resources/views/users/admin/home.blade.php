@@ -19,12 +19,16 @@
             <thead>
               <th>Kompetisi</th>
               <th>Jumlah Peserta</th>
+              <th>Ekspor</th>
             </thead>
               <tbody>
                 @forelse ($competition as $item)
                 <tr>
                   <td class="font-weight-normal">{{strtoupper($item['name'])}}&nbsp;&nbsp;&nbsp;&nbsp; :</td>
                   <td>{{$item['team_count']}}</td>
+                  <td>
+                    <a href="{{route('admin.peserta.export', $item['id'])}}" class="btn-sm btn-success">Ekspor</a>
+                    </td>
                 </tr>
                 @empty
                 <tr>
