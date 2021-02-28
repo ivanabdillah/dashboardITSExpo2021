@@ -208,9 +208,10 @@ class UserController extends Controller
         $path = $request->berkas;
 
         if (str_contains($path, 'twibbon')) {
-            if (File::isDirectory(storage_path('app/public' . $path))) {
+            $path = str_replace('twibbon', 'twibbon/', $path);
+            if (File::isDirectory(storage_path('app/public/' . $path))) {
                 return Storage::disk('public')->response(Storage::disk('public')->files($path)[0]);
-            } else if (File::isFile(storage_path('app/public' . $path))) {
+            } else if (File::isFile(storage_path('app/public/' . $path))) {
                 return Storage::disk('public')->response($path);
             }
         } else {
