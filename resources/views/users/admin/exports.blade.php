@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     @foreach ($users as $user)
-      @if($user->ketua)
+      @if($user->ketua and $user->user)
       <tr>
         <td>{{$user->id}}</td>
         <td>{{$user->team_name}}</td>
@@ -36,7 +36,7 @@
       </tr>
       @endif
 
-      @if($user->anggotaPertama)
+      @if($user->anggotaPertama and $user->user)
       <tr>
         <td>{{$user->id}}</td>
         <td>{{$user->team_name}}</td>
@@ -56,7 +56,7 @@
       </tr>
       @endif
 
-      @if($user->anggotaKedua)
+      @if($user->anggotaKedua and $user->user)
       <tr>
         <td>{{$user->id}}</td>
         <td>{{$user->team_name}}</td>
