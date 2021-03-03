@@ -6,7 +6,7 @@ namespace App\Actions;
 
 class GenerateDataframe
 {
-    public function execute(string $path)
+    public static function execute(string $path)
     {
         $array = $fields = array();
         $i = 0;
