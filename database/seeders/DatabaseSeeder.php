@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             CompetitionSeeder::class,
-            DummyUserSeeder::class // comment di production
+            AdminSeeder::class,
+//            BCCSeeder::class,
+            PaperSeeder::class,
+//            DummyUserSeeder::class // comment di production
         ]);
     }
 }
